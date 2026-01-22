@@ -1,5 +1,6 @@
 import { ReactNode, useEffect } from 'react'
 import Sidebar from './Sidebar'
+import UpdatePopup from '../UpdatePopup'
 import TitleBar from '../TitleBar'
 import { useUIStore } from '@renderer/stores/useUIStore'
 import { useSettingsStore } from '@renderer/stores/useSettingsStore'
@@ -64,6 +65,7 @@ export default function MainLayout({ children }: MainLayoutProps): React.JSX.Ele
       >
         {children}
       </main>
+      <UpdatePopup />
     </div>
   )
 }

@@ -25,7 +25,7 @@ interface TimerStore {
   lastTick: number | null
 
   // Timer actions
-  startTimer: () => void
+  startTimer: (subjectId?: string) => void
   pauseTimer: () => void
   resetTimer: (duration: number) => void
   tick: () => void
@@ -51,10 +51,10 @@ export const useTimerStore = create<TimerStore>((set, get) => ({
   loading: false,
   lastTick: null,
 
-  startTimer: () => {
+  startTimer: (subjectId?: string) => {
     const state = get()
     if (!state.currentSession && state.mode === 'focus') {
-      state.startSession()
+      state.startSession(subjectId)
     }
     set({ isRunning: true, lastTick: Date.now() })
   },

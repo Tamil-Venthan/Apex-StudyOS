@@ -82,10 +82,25 @@ export const useAnalyticsStore = create<AnalyticsStore>((set, get) => ({
 
       if (result.success) {
         // Convert date strings to Date objects - map endTime from DB to completedAt for frontend
-        const sessions = result.data.map((session: StudySession & { endTime?: string }) => ({
-          ...session,
-          completedAt: new Date(session.endTime || session.completedAt)
-        }))
+        const sessions = result.data.map(
+          (
+            session: StudySession & {
+              endTime?: string
+              subjectName?: string
+              subjectColor?: string
+            }
+          ) => ({
+            ...session,
+            completedAt: new Date(session.endTime || session.completedAt),
+            subject: session.subjectName
+              ? {
+                  id: session.subjectId || '',
+                  name: session.subjectName,
+                  color: session.subjectColor || '#3B82F6'
+                }
+              : undefined
+          })
+        )
         set({ sessions, loading: false })
       } else {
         set({ error: result.error, loading: false })

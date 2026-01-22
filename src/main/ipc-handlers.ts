@@ -1285,7 +1285,7 @@ ipcMain.handle(
   ) => {
     try {
       let query =
-        'SELECT s.*, subj.name as subjectName FROM StudySession s LEFT JOIN Subject subj ON s.subjectId = subj.id WHERE s.userId = ?'
+        'SELECT s.*, subj.name as subjectName, subj.color as subjectColor FROM StudySession s LEFT JOIN Subject subj ON s.subjectId = subj.id WHERE s.userId = ?'
       const params: string[] = [filters.userId]
 
       if (filters.subjectId) {

@@ -214,9 +214,9 @@ export default function Timer(): React.JSX.Element {
     if (isRunning) {
       pauseTimer()
     } else {
-      startTimer()
+      startTimer(selectedSubjectId)
     }
-  }, [isRunning, startTimer, pauseTimer])
+  }, [isRunning, startTimer, pauseTimer, selectedSubjectId])
 
   const handleReset = useCallback((): void => {
     resetTimer(getDuration(mode))

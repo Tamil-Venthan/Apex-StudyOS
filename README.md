@@ -39,9 +39,9 @@ Whether you're preparing for CMA, CA, or any other exam, Apex StudyOS helps you 
 
 [![Download Latest Release](https://img.shields.io/badge/Download-Latest%20Release-brightgreen?style=for-the-badge&logo=github)](https://github.com/Tamil-Venthan/Apex-StudyOS/releases/latest)
 
-|    Platform    |                                         Download                                         |        Installation         |
-| :------------: | :--------------------------------------------------------------------------------------: | :-------------------------: |
-| 🪟 **Windows** |      [Download .exe](https://github.com/Tamil-Venthan/Apex-StudyOS/releases/latest)      |   Double-click to install   |
+|    Platform    |                                    Download                                    |      Installation       |
+| :------------: | :----------------------------------------------------------------------------: | :---------------------: |
+| 🪟 **Windows** | [Download .exe](https://github.com/Tamil-Venthan/Apex-StudyOS/releases/latest) | Double-click to install |
 
 **No compilation needed!** Just download and run. 🚀
 
@@ -79,7 +79,6 @@ Whether you're preparing for CMA, CA, or any other exam, Apex StudyOS helps you 
 </td>
 </tr>
 </table>
-
 
 ## ✨ Key Features
 
@@ -198,8 +197,6 @@ npm run build:win
 ```
 
 Output: `dist/Apex StudyOS Setup 1.1.0.exe`
-
-
 
 ## ⌨️ Keyboard Shortcuts
 
