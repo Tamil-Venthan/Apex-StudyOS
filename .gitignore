@@ -1,0 +1,53 @@
+# Dependencies
+node_modules
+package-lock.json*
+yarn.lock
+pnpm-lock.yaml
+
+# Build outputs
+dist
+out
+build
+
+# Development artifacts
+.DS_Store
+.eslintcache
+*.log*
+.vscode/settings.json
+
+# Environment and sensitive files
+.env
+.env.local
+.env.*.local
+
+# IDE
+.idea
+*.swp
+*.swo
+*~
+
+# OS files
+Thumbs.db
+desktop.ini
+
+# Executables and build artifacts
+*.exe
+*.dmg
+*.app
+*.deb
+*.rpm
+
+# Database
+*.db
+*.db-journal
+# !prisma/dev.db
+
+# Generated files
+/src/generated/prisma
+
+# Temporary and test files
+*.txt
+temp/
+tmp/
+lint_results.json
+*.tsbuildinfo
