@@ -35,15 +35,13 @@ Whether you're preparing for CMA, CA, or any other exam, Apex StudyOS helps you 
 
 ### 📥 Get Apex StudyOS - Ready to Use!
 
-**Pre-built executables are available for all major platforms!**
+**Pre-built executable is available for Windows!**
 
 [![Download Latest Release](https://img.shields.io/badge/Download-Latest%20Release-brightgreen?style=for-the-badge&logo=github)](https://github.com/Tamil-Venthan/Apex-StudyOS/releases/latest)
 
 |    Platform    |                                         Download                                         |        Installation         |
 | :------------: | :--------------------------------------------------------------------------------------: | :-------------------------: |
 | 🪟 **Windows** |      [Download .exe](https://github.com/Tamil-Venthan/Apex-StudyOS/releases/latest)      |   Double-click to install   |
-|  🍎 **macOS**  |      [Download .dmg](https://github.com/Tamil-Venthan/Apex-StudyOS/releases/latest)      |    Drag to Applications     |
-|  🐧 **Linux**  | [Download .deb/.AppImage](https://github.com/Tamil-Venthan/Apex-StudyOS/releases/latest) | Install via package manager |
 
 **No compilation needed!** Just download and run. 🚀
 
@@ -201,21 +199,7 @@ npm run build:win
 
 Output: `dist/Apex StudyOS Setup 1.1.0.exe`
 
-**macOS:**
 
-```bash
-npm run build:mac
-```
-
-Output: `dist/Apex StudyOS-1.1.0.dmg`
-
-**Linux:**
-
-```bash
-npm run build:linux
-```
-
-Output: `dist/apex-study-tracker_1.1.0_amd64.deb` (or `.AppImage`)
 
 ## ⌨️ Keyboard Shortcuts
 
@@ -330,7 +314,6 @@ limitations under the License.
 ## � What's New in v1.1.0
 
 - ✅ **Video Progress Tracking** - Track watched duration for video courses
-- ✅ **Smart Notes** - Rich text editor powered by TipTap
 - ✅ **Important Flags** - Mark and filter critical topics
 - ✅ **PDF Export** - Generate study reports and summaries
 - ✅ **Enhanced Analytics** - More detailed insights into your study patterns
