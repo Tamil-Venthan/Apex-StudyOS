@@ -8,6 +8,7 @@ pnpm-lock.yaml
 dist
 out
 build
+user_guide
 
 # Development artifacts
 .DS_Store

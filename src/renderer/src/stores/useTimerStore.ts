@@ -16,6 +16,7 @@ interface StudySession {
 interface TimerStore {
   isRunning: boolean
   timeLeft: number // seconds
+  endTime: number | null // timestamp in ms
   mode: 'focus' | 'shortBreak' | 'longBreak'
   totalWorkTime: number
   sessions: StudySession[]
@@ -43,6 +44,7 @@ const TEMP_USER_ID = 'user-1'
 export const useTimerStore = create<TimerStore>((set, get) => ({
   isRunning: false,
   timeLeft: 25 * 60,
+  endTime: null,
   mode: 'focus',
   totalWorkTime: 0,
   sessions: [],
@@ -56,27 +58,33 @@ export const useTimerStore = create<TimerStore>((set, get) => ({
     if (!state.currentSession && state.mode === 'focus') {
       state.startSession(subjectId)
     }
-    set({ isRunning: true, lastTick: Date.now() })
+    const now = Date.now()
+    // Calculate expected end time based on current timeLeft
+    const endTime = now + state.timeLeft * 1000
+    set({ isRunning: true, endTime, lastTick: now })
   },
 
-  pauseTimer: () => set({ isRunning: false, lastTick: null }),
+  pauseTimer: () => set({ isRunning: false, endTime: null, lastTick: null }),
 
   resetTimer: (duration: number) => {
-    set({ timeLeft: duration, isRunning: false, lastTick: null })
+    set({ timeLeft: duration, isRunning: false, endTime: null, lastTick: null })
   },
 
   tick: () => {
     const state = get()
-    if (state.isRunning && state.timeLeft > 0) {
+    if (state.isRunning && state.endTime) {
       const now = Date.now()
-      const lastTick = state.lastTick || now
-      const delta = Math.floor((now - lastTick) / 1000)
 
-      if (delta >= 1) {
-        const newTimeLeft = Math.max(state.timeLeft - delta, 0)
-        const consumed = state.timeLeft - newTimeLeft
+      // Calculate remaining time based on target endTime
+      // Ceiling ensures we don't show 0 until we are actually past the time
+      const newTimeLeft = Math.max(0, Math.ceil((state.endTime - now) / 1000))
 
-        // Update timeLeft, lastTick, and accumulators
+      // Calculate how much time passed since last state update (or effectively since last tick)
+      // We explicitly rely on the difference in timeLeft to account for jumps (e.g. sleep)
+      const consumed = state.timeLeft - newTimeLeft
+
+      if (consumed > 0) {
+        // Update timeLeft and LastTick
         const updates: Partial<TimerStore> = {
           timeLeft: newTimeLeft,
           lastTick: now
@@ -94,15 +102,16 @@ export const useTimerStore = create<TimerStore>((set, get) => ({
           state.pauseTimer()
           // Play sound notification here if needed
         }
-      } else if (!state.lastTick) {
-        // Initialize lastTick if it wasn't set (fail-safe)
-        set({ lastTick: now })
       }
+    } else if (state.isRunning && !state.endTime) {
+      // Governance: If running but no endTime (shouldn't happen with new logic, but safe recovery),
+      // reset or just stop.
+      state.pauseTimer()
     }
   },
 
   switchMode: (mode, duration) => {
-    set({ mode, timeLeft: duration, isRunning: false, lastTick: null })
+    set({ mode, timeLeft: duration, isRunning: false, endTime: null, lastTick: null })
   },
 
   startSession: async (subjectId?: string) => {
