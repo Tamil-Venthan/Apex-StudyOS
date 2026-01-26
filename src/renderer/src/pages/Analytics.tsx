@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useSubjectStore, Topic } from '@renderer/stores/useSubjectStore'
 import { useCourseStore } from '@renderer/stores/useCourseStore'
+import { Link } from 'react-router-dom'
 
 import { motion } from 'framer-motion'
 import {
@@ -14,7 +15,8 @@ import {
   Calendar,
   Clock,
   Flame,
-  BarChart3
+  BarChart3,
+  Sparkles
 } from 'lucide-react'
 import {
   PieChart,
@@ -220,6 +222,35 @@ export default function Analytics(): React.JSX.Element {
           Track your study progress, sessions, and insights
         </p>
       </div>
+
+      {/* AI Insights */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="glass-card p-5 rounded-xl border border-purple-500/20"
+      >
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <div className="p-2 rounded-lg bg-gradient-to-br from-purple-500 to-pink-500">
+              <motion.div whileHover={{ rotate: 180 }} transition={{ duration: 0.3 }}>
+                <Sparkles className="w-5 h-5 text-white" />
+              </motion.div>
+            </div>
+            <div>
+              <h3 className="font-semibold">AI-Powered Insights</h3>
+              <p className="text-sm text-muted-foreground">
+                Get personalized study recommendations from your AI Coach
+              </p>
+            </div>
+          </div>
+          <Link
+            to="/ai-coach"
+            className="px-4 py-2 rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors text-sm font-medium"
+          >
+            Open AI Coach
+          </Link>
+        </div>
+      </motion.div>
 
       {/* Study Time Stats */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">

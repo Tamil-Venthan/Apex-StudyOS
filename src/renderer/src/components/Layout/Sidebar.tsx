@@ -11,7 +11,8 @@ import {
   Linkedin,
   ChevronLeft,
   ChevronRight,
-  User
+  User,
+  Sparkles
 } from 'lucide-react'
 import { Link, useLocation } from 'react-router-dom'
 import { cn } from '@renderer/lib/utils'
@@ -24,6 +25,7 @@ const navigation = [
   { name: 'My Classes', href: '/classes', icon: GraduationCap },
 
   { name: 'Analytics', href: '/analytics', icon: BarChart3 },
+  { name: 'AI Coach', href: '/ai-coach', icon: Sparkles },
   { name: 'Calendar', href: '/calendar', icon: CalendarDays },
   { name: 'Timeline', href: '/schedule', icon: Calendar },
   { name: 'Timer', href: '/timer', icon: Timer },

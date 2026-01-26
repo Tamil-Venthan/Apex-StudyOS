@@ -11,7 +11,7 @@
 **A premium desktop application designed to supercharge your learning journey**
 
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg?style=flat-square)](LICENSE)
-[![Version](https://img.shields.io/badge/version-1.1.0-success.svg?style=flat-square)](package.json)
+[![Version](https://img.shields.io/badge/version-1.2.0-success.svg?style=flat-square)](package.json)
 [![Downloads](https://img.shields.io/github/downloads/Tamil-Venthan/Apex-StudyOS/total?style=flat-square&color=brightgreen)](https://github.com/Tamil-Venthan/Apex-StudyOS/releases)
 [![Electron](https://img.shields.io/badge/Electron-39.x-47848F.svg?style=flat-square&logo=electron)](https://www.electronjs.org/)
 [![React](https://img.shields.io/badge/React-19.x-61DAFB.svg?style=flat-square&logo=react)](https://reactjs.org/)
@@ -56,7 +56,7 @@ Whether you're preparing for CMA, CA, or any other exam, Apex StudyOS helps you 
 <p>Advanced Pomodoro timer with immersive fullscreen mode keeps distractions away</p>
 </td>
 <td width="33%" align="center">
-<h3>� Track Progress</h3>
+<h3>📈 Track Progress</h3>
 <p>Beautiful visualizations show exactly where you stand in your preparation</p>
 </td>
 <td width="33%" align="center">
@@ -308,7 +308,15 @@ limitations under the License.
 - GitHub: [@Tamil-Venthan](https://github.com/Tamil-Venthan)
 - Project Link: [https://github.com/Tamil-Venthan/Apex-StudyOS](https://github.com/Tamil-Venthan/Apex-StudyOS)
 
-## � What's New in v1.1.0
+## ✨ What's New in v1.2.0 (AI Supercharge Update)
+
+- 🤖 **AI Personalization** - The AI Coach now knows your name, active exams, and due dates for tailored advice.
+- ⚡ **Response Length Controls** - Toggle between "Short Answer" for quick concepts or "Long Answer" for deep dives.
+- 🌍 **OpenRouter Integration** - Connect to 100+ AI models (Llama 3, DeepSeek, Mistral, etc.) for free or paid access.
+- 🎨 **Enhanced UI** - Cleaner typography, beautiful lists, and "Glassmorphism" styling for a premium feel.
+- 📝 **Improved Markdown** - Better rendering for tables, quotes, and code blocks in AI responses.
+
+## ✨ What's New in v1.1.0
 
 - ✅ **Video Progress Tracking** - Track watched duration for video courses
 - ✅ **Important Flags** - Mark and filter critical topics

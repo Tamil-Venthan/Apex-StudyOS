@@ -13,7 +13,7 @@ interface StudySession {
   createdAt: Date
 }
 
-interface TimerStore {
+interface TimerState {
   isRunning: boolean
   timeLeft: number // seconds
   endTime: number | null // timestamp in ms
@@ -41,7 +41,7 @@ interface TimerStore {
 
 const TEMP_USER_ID = 'user-1'
 
-export const useTimerStore = create<TimerStore>((set, get) => ({
+export const useTimerStore = create<TimerState>((set, get) => ({
   isRunning: false,
   timeLeft: 25 * 60,
   endTime: null,
@@ -85,7 +85,7 @@ export const useTimerStore = create<TimerStore>((set, get) => ({
 
       if (consumed > 0) {
         // Update timeLeft and LastTick
-        const updates: Partial<TimerStore> = {
+        const updates: Partial<TimerState> = {
           timeLeft: newTimeLeft,
           lastTick: now
         }
@@ -117,7 +117,7 @@ export const useTimerStore = create<TimerStore>((set, get) => ({
   startSession: async (subjectId?: string) => {
     try {
       const state = get() // Get latest state
-      const result = await window.electron.ipcRenderer.invoke('sessions:create', {
+      const result = await (window as any).electron.ipcRenderer.invoke('sessions:create', {
         userId: TEMP_USER_ID,
         subjectId,
         sessionType: state.mode, // Use current mode (focus, shortBreak, longBreak)
@@ -140,7 +140,7 @@ export const useTimerStore = create<TimerStore>((set, get) => ({
       const endTime = new Date()
       const duration = state.currentSessionDuration
 
-      const result = await window.electron.ipcRenderer.invoke(
+      const result = await (window as any).electron.ipcRenderer.invoke(
         'sessions:update',
         state.currentSession.id,
         {
@@ -165,7 +165,7 @@ export const useTimerStore = create<TimerStore>((set, get) => ({
   fetchTodaySessions: async () => {
     set({ loading: true })
     try {
-      const result = await window.electron.ipcRenderer.invoke('sessions:getToday', TEMP_USER_ID)
+      const result = await (window as any).electron.ipcRenderer.invoke('sessions:getToday', TEMP_USER_ID)
       if (result.success) {
         // s.duration is already in seconds, so just sum them directly
         const totalSeconds = result.data.reduce(
@@ -183,7 +183,7 @@ export const useTimerStore = create<TimerStore>((set, get) => ({
   fetchWeeklySessions: async () => {
     set({ loading: true })
     try {
-      const result = await window.electron.ipcRenderer.invoke('sessions:getWeek', TEMP_USER_ID)
+      const result = await (window as any).electron.ipcRenderer.invoke('sessions:getWeek', TEMP_USER_ID)
       if (result.success) {
         set({ sessions: result.data, loading: false })
       }

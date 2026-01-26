@@ -1410,6 +1410,71 @@ ipcMain.handle('timer:getWeeklyHistory', async (_, userId: string) => {
   }
 })
 
+// ========== AI OPERATIONS ==========
+
+import { aiService } from './services/aiService'
+import { AISettings } from './services/aiTypes'
+
+// Initialize AI service (called on app start)
+ipcMain.handle('ai:initialize', async (_, settings: AISettings) => {
+  try {
+    await aiService.initialize(settings)
+    return { success: true }
+  } catch (error) {
+    console.error('Error initializing AI:', error)
+    return { success: false, error: 'Failed to initialize AI service' }
+  }
+})
+
+// Send a message to AI
+ipcMain.handle(
+  'ai:send-message',
+  async (
+    _,
+    userId: string,
+    message: string,
+    userName?: string,
+    examName?: string,
+    examDate?: string,
+    responseLength?: 'short' | 'long'
+  ) => {
+    try {
+      const response = await aiService.sendMessage(
+        userId,
+        message,
+        userName,
+        examName,
+        examDate,
+        responseLength
+      )
+      return response
+    } catch (error) {
+      console.error('Error sending AI message:', error)
+      return { success: false, error: 'Failed to get AI response' }
+    }
+  }
+)
+
+// Get quick insights for Analytics page
+ipcMain.handle('ai:get-insights', async (_, userId: string) => {
+  try {
+    const insights = await aiService.getQuickInsights(userId)
+    return { success: true, data: insights }
+  } catch (error) {
+    console.error('Error getting AI insights:', error)
+    return { success: false, error: 'Failed to get insights', data: [] }
+  }
+})
+
+// Check if AI is ready
+ipcMain.handle('ai:is-ready', async () => {
+  try {
+    return { success: true, data: aiService.isReady() }
+  } catch (error) {
+    return { success: false, data: false }
+  }
+})
+
 // ========== RESOURCE OPERATIONS ==========
 
 // Create a resource

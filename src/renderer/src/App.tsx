@@ -19,6 +19,7 @@ const Settings = lazy(() => import('./pages/Settings'))
 const SubjectDetail = lazy(() => import('./pages/SubjectDetail'))
 const CourseDetail = lazy(() => import('./pages/CourseDetail'))
 const Calendar = lazy(() => import('./pages/Calendar'))
+const AICoach = lazy(() => import('./pages/AICoach'))
 
 function App(): React.JSX.Element {
   useKeyboardShortcuts()
@@ -39,6 +40,7 @@ function App(): React.JSX.Element {
               <Route path="/schedule" element={<Schedule />} />
               <Route path="/timer" element={<Timer />} />
               <Route path="/calendar" element={<Calendar />} />
+              <Route path="/ai-coach" element={<AICoach />} />
 
               <Route path="/settings" element={<Settings />} />
             </Routes>
